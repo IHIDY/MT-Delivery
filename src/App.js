@@ -3,6 +3,10 @@ import Menu from './components/Menu'
 import Cart from './components/Cart'
 import FoodsCategory from './components/FoodsCategory'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchFoodsList } from './store/modules/takeaway'
+import { useEffect } from 'react'
+
 import './App.scss'
 
 const foodsList = [
@@ -64,6 +68,13 @@ const foodsList = [
 
 const App = () => {
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchFoodsList());
+  }, [dispatch]);
+
+  // const { foodsList } = useSelector(state => state.foods)
   return (
     <div className="home">
       {/* 导航 */}
